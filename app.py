@@ -86,14 +86,13 @@ def update(post_id):
         author = request.form.get('author')
         title = request.form.get('title')
         content = request.form.get('content')
-        likes = request.form.get('likes')
 
         new_post = {
             'id': post_id,
             'author': author,
             'title': title,
             'content': content,
-            'likes': likes
+            'likes': old_post.get('likes', 0)
          }
 
         updated_posts = [post for post in all_posts if post['id'] != post_id]
