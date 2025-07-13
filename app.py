@@ -37,7 +37,6 @@ def add():
         author = request.form.get('author')
         title = request.form.get('title')
         content = request.form.get('content')
-        likes = request.form.get('likes')
 
         if blog_posts:
             next_id = max(post['id'] for post in blog_posts) + 1
