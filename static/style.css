@@ -11,10 +11,14 @@ h1 {
 }
 
 .post {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     background-color: #FFF;
     border: 1px solid #DDD;
     padding: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     border-radius: 8px;
 }
 
@@ -26,4 +30,13 @@ h1 {
     margin: 10px 0;
 }
 
+.buttons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    border-radius: 8px;
+}
 
+#add {
+    font-size: 20px;
+}

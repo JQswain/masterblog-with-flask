@@ -13,10 +13,20 @@
     <h2>{{ blog["title"] }}</h2>
     <p><em>Written by {{ blog["author"] }}</em></p>
     <p>{{ blog["content"] }}</p>
+</div>
+<div class="buttons">
+    <form action="/update/{{ blog['id'] }}" method="GET" >
+        <input type="submit" value="update">
+    </form>
     <form action="/delete/{{ blog['id'] }}" method="POST" >
         <input type="submit" value="delete">
     </form>
 </div>
 {% endfor %}
+<div class="buttons">
+    <form id="add" action="/add" method="GET" >
+        <input type="submit" value="Add">
+    </form>
+</div>
 </body>
 </html>
