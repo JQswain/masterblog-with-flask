@@ -15,11 +15,14 @@
     <p>{{ blog["content"] }}</p>
 </div>
 <div class="buttons">
-    <form action="/update/{{ blog['id'] }}" method="GET" >
+    <form id="button" update action="{{ url_for('update', post_id=blog['id']) }}" method="GET" >
         <input type="submit" value="update">
     </form>
-    <form action="/delete/{{ blog['id'] }}" method="POST" >
+    <form class="button" action="{{ url_for('delete', post_id=blog['id']) }}" method="POST" >
         <input type="submit" value="delete">
+    </form>
+    <form class="button" action="{{ url_for('likes', post_id=blog['id']) }}" method="POST" >
+        <input type="submit" value="like ❤️{{ blog['likes'] }}" >
     </form>
 </div>
 {% endfor %}

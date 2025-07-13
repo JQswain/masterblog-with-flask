@@ -37,6 +37,7 @@ def add():
         author = request.form.get('author')
         title = request.form.get('title')
         content = request.form.get('content')
+        likes = request.form.get('likes')
 
         if blog_posts:
             next_id = max(post['id'] for post in blog_posts) + 1
@@ -48,7 +49,8 @@ def add():
             'id': len(blog_posts) + 1,
             'author': author,
             'title': title,
-            'content': content
+            'content': content,
+            'likes': 0
             }
 
         blog_posts.append(post)
@@ -84,12 +86,14 @@ def update(post_id):
         author = request.form.get('author')
         title = request.form.get('title')
         content = request.form.get('content')
+        likes = request.form.get('likes')
 
         new_post = {
             'id': post_id,
             'author': author,
             'title': title,
-            'content': content
+            'content': content,
+            'likes': likes
          }
 
         updated_posts = [post for post in all_posts if post['id'] != post_id]
@@ -106,6 +110,17 @@ def update(post_id):
     else:
     # So display the update.html page
         return render_template('update.html', post=old_post)
+
+
+@app.route('/likes/<int:post_id>', methods=['POST'] )
+def likes(post_id):
+    posts = load_posts()
+    for post in posts:
+        if post['id'] == post_id:
+            post['likes'] = post.get('likes',0) + 1
+            save_posts(posts)
+            break
+    return redirect(url_for('index'))
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5000, debug=True)
